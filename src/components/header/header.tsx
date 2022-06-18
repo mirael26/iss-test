@@ -7,7 +7,7 @@ const Header = (): JSX.Element => {
         <a>Каталог</a>
       </nav>
       <h1 className="header__title">Сравнение</h1>
-      <div className="header__account">Личный кабинет</div>
+      <button className="header__account">Личный кабинет</button>
     </div>
   );
 };
