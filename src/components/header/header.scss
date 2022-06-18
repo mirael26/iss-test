@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  min-height: 101px;
+  padding: 42px 166px 41px;
+  border-bottom: 1px solid #A6A5A9;
+}
+
+.header__nav {
+  @include nav-text;
+  margin-right: auto;
+}
+
+.header__title {
+  @include page-title-text; 
+  text-transform: uppercase;
+  margin-right: 48px;
+}
+
+.header__account {
+  @include page-title-text;
+  position: relative;
+  margin-right: 39px;
+
+  &::after {
+    position: absolute;
+    content: "";
+    top: -4px;
+    right: -40px;
+    width: 20px;
+    height: 20px;
+    background-image: url('../../img/user-icon.svg');
+  }
+}
