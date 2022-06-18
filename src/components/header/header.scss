@@ -13,13 +13,13 @@
 }
 
 .header__title {
-  @include page-title-text; 
+  @include header-title-text; 
   text-transform: uppercase;
   margin-right: 48px;
 }
 
 .header__account {
-  @include page-title-text;
+  @include header-title-text;
   position: relative;
   margin-right: 39px;
 

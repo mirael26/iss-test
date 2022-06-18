@@ -1,0 +1,15 @@
+.amount-filter__text {
+  @include interactive-text;
+  display: inline-block;
+}
+
+.amount-filter__button {
+  @include interactive-text;
+  display: inline-block;
+  margin-left: 5px;
+  line-height: 23px;
+
+  &.active {
+    border-bottom: 1px solid #0D5ADC;
+  }
+}

@@ -8,10 +8,30 @@
   color: #0D5ADC;
 }
 
-@mixin page-title-text {
+@mixin header-title-text {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 12px;
   line-height: 14px;
+}
+
+@mixin page-title-text {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 60px;
+  letter-spacing: 0.02em;
+  color: #828286;
+}
+
+@mixin interactive-text {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 60px;
+  letter-spacing: 0.02em;
+  color: #0D5ADC;
 }

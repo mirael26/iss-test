@@ -1,0 +1,9 @@
+.comparison-page__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 63px 165px 10px;
+}
+
+.comparison-page__title {
+  @include page-title-text;
+}
