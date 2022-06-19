@@ -15,13 +15,13 @@ const ComparisonTable = (): JSX.Element => {
             </div>
           </div>
           <div className="comparison-table__cell comparison-table__cell--columns-3">
-            <Phone/>
+            <Phone isLast={false}/>
           </div>
           <div className="comparison-table__cell comparison-table__cell--columns-3">
-            <Phone/>
+            <Phone isLast={false}/>
           </div>
           <div className="comparison-table__cell comparison-table__cell--columns-3">
-            <Phone/>
+            <Phone isLast={true}/>
           </div>
       </div>
       

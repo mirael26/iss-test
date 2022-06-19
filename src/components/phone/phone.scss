@@ -18,7 +18,7 @@
 .phone__change {
   position: absolute;
   top: 75px;
-  right: 52px;
+  right: calc(50% - 81px);
   width: 22px;
   height: 11px;
   font-size: 0px;
@@ -29,6 +29,13 @@
 
 .phone__search {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 75px;
+  left: calc(50% + 47px);
+  z-index: 1;
+
+  &--last {
+    left: initial;
+    right: calc(50% - 83px);
+  }
 }
+
