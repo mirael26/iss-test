@@ -35,3 +35,22 @@
   letter-spacing: 0.02em;
   color: #0D5ADC;
 }
+
+@mixin table-header-text {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  text-transform: uppercase;
+  color: #A4A9B9;
+}
+
+@mixin text {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #3B4157;
+}

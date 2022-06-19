@@ -1,0 +1,98 @@
+.compare-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.comparison-table__header {
+  display: flex;
+  padding: 10px 165px 78px;
+}
+
+.comparison-table__body {
+  padding: 0px 165px 91px;
+  background-color: #F4F9FC;
+}
+
+.comparison-table__row {
+  display: flex;
+  padding: 33px 0px 35px;
+  border-top: 1px solid #CDCFD2;
+
+  &:last-child {    
+    border-bottom: 1px solid #CDCFD2;
+  }
+}
+
+.comparison-table__header-cell {
+  @include table-header-text;
+  flex-grow: 1;
+  width: auto;
+  padding-right: 10px;
+  text-align: left;
+  text-transform: uppercase;
+
+  .comparison-table__header & {
+    align-self: flex-end; 
+  }
+}
+
+
+.comparison-table__cell {
+  @include text;
+  text-align: center;
+  flex-shrink: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  &--columns-2 {
+    width: 35%;
+  }
+  
+  &--columns-3 {
+    width: 25%;
+  }
+
+  &--columns-4 {
+    width: 20%;
+  }
+
+  &--columns-5 {
+    width: 15%;
+  }
+
+  &--columns-6 {
+    width: 13%;
+  }
+}
+
+.comparison-table__differences-checkbox-container {
+  position: relative;
+  margin-left: 38px;
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 17px;
+    left: -36px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #C1C1C2;
+    border-radius: 4px;
+  }
+
+  &.checked::before {
+    background-image: url('../../img/check.png');
+    background-position: 50%;
+    background-size: 17px;
+    background-repeat: no-repeat;
+  }
+}
+
+.comparison-table__differences-checkbox-label {
+  @include interactive-text;  
+  text-transform: initial;
+}
+
+.comparison-table__differences-checkbox {
+  display: none;
+}
