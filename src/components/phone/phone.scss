@@ -1,0 +1,28 @@
+.phone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.phone__image {
+  width: 65px;
+  height: 120px;
+  margin-bottom: 8px;
+}
+
+.phone__text {
+  @include text;
+}
+
+.phone__change {
+  position: absolute;
+  top: 75px;
+  right: 52px;
+  width: 22px;
+  height: 11px;
+  font-size: 0px;
+  background-image: url('../../img/arrow-down.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
