@@ -1,0 +1,65 @@
+.search {
+  overflow-y: scroll;
+  width: 421px;
+  max-height: 336px;
+  padding: 34px 44px 25px 18px;
+  background-color: #fff;
+  border: 1px solid #E3E3E3;
+  box-shadow: 0px 16px 32px rgba(35, 39, 51, 0.1);
+  border-radius: 4px;
+
+  &::-webkit-scrollbar {
+    width: 21px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    margin: 20px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #E3E3E3;
+    border-radius: 20px;
+    border: 8px solid #fff;
+  }
+}
+
+.search__input {
+  width: 359px;
+  height: 47px;
+  margin-bottom: 18px;
+  padding: 10px 37px 9px 16px;
+  border: 1px solid #C1C1C1;
+  border-radius: 4px;
+
+  &::placeholder {
+    @include placeholder-text;
+  }
+}
+
+.search__phone-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
+}
+
+.search__phone-change-button {
+  width: 20px;
+  height: 20px;
+  margin-right: 18px;
+  font-size: 0px;
+  background: url('./../../img/change-arrows.svg') no-repeat center;
+}
+
+.search__phone-image {
+  width: 24px;
+  height: 50px;
+  margin-right: 23px;
+}
+
+.search__phone-text {
+  @include text;
+}
