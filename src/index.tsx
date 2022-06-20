@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as ReactDOMClient from "react-dom/client";
-// import { Provider } from "react-redux";
+import { Provider } from "react-redux";
 
-// import store from "./store/store";
+import store from "./store/store";
 import App from "./components/app/app";
 import './main.scss';
 
@@ -10,7 +10,7 @@ import './main.scss';
 const root = ReactDOMClient.createRoot(document.getElementById('root') as HTMLDivElement);
 
 root.render(
-  // <Provider store={store}>
+  <Provider store={store}>
     <App />
-  // </Provider>
+  </Provider>
 );
