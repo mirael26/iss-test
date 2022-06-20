@@ -8,7 +8,17 @@ import { Header, TableHeaders } from "../../const";
 
 import Phone from "../phone/phone";
 
-
+const updatePhones = (phones: any, displayedPhones: any, amount: any) => {
+  if (displayedPhones.length >= amount) {
+    return displayedPhones.slice(0, amount);
+  }
+  const newPhones = displayedPhones.slice();
+  while (newPhones.length < amount) {
+    const addedPhone = phones.find((phone: any) => !newPhones.includes(phone));
+    newPhones.push(addedPhone);
+  }
+  return newPhones;
+}
 
 const ComparisonTable = (): JSX.Element => {
   const phones = useSelector((state: State) => state.phones);
@@ -17,9 +27,14 @@ const ComparisonTable = (): JSX.Element => {
   const dispatch = useDispatch();
 
   useEffect(
-    () => {      
-      dispatch(ActionCreator.updateDisplayedPhones(phones.slice(0, amount)));
-    }, []
+    () => {
+      if (displayedPhones.length === 0) {
+        dispatch(ActionCreator.updateDisplayedPhones(phones.slice(0, amount)));
+        return;
+      }
+
+      dispatch(ActionCreator.updateDisplayedPhones(updatePhones(phones, displayedPhones, amount)));
+    }, [amount]
   )
 
   return (
