@@ -17,11 +17,12 @@ const AmountFilter = (): JSX.Element => {
     }
   }
 
-  const onButtonClick = (evt: any) => {
-    if (evt.target.textContent === amount) {
+  const onButtonClick = (evt: React.SyntheticEvent): void => {
+    const element = evt.target as Element;
+    if (Number(element.textContent) === amount) {
       return;
     }
-    dispatch(ActionCreator.changePhonesAmount(Number(evt.target.textContent)))
+    dispatch(ActionCreator.changePhonesAmount(Number(element.textContent)))
   }
   
   return (

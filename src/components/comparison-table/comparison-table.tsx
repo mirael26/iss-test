@@ -1,24 +1,24 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { ActionCreator } from "../../store/action";
-import { State } from "../../types";
+import { PhoneProperties, State } from "../../types";
 import { Header, TableHeaders } from "../../const";
 
 import Phone from "../phone/phone";
 
-const updatePhones = (phones: any, displayedPhones: any, amount: any) => {
+const updatePhones = (phones: Array<PhoneProperties>, displayedPhones: Array<PhoneProperties>, amount: number): Array<PhoneProperties> => {
   if (displayedPhones.length >= amount) {
     return displayedPhones.slice(0, amount);
   }
   const newPhones = displayedPhones.slice();
   while (newPhones.length < amount) {
-    const addedPhone = phones.find((phone: any) => !newPhones.includes(phone));
+    const addedPhone = phones.find((phone) => !newPhones.includes(phone));
     newPhones.push(addedPhone);
   }
   return newPhones;
-}
+};
 
 const ComparisonTable = (): JSX.Element => {
   const phones = useSelector((state: State) => state.phones);
@@ -26,7 +26,9 @@ const ComparisonTable = (): JSX.Element => {
   const displayedPhones = useSelector((state: State) => state.displayedPhones);
   const dispatch = useDispatch();
 
-  useEffect(
+  const [differencesOn, setDifferences] = useState(false);
+
+  useEffect (
     () => {
       if (displayedPhones.length === 0) {
         dispatch(ActionCreator.updateDisplayedPhones(phones.slice(0, amount)));
@@ -36,16 +38,26 @@ const ComparisonTable = (): JSX.Element => {
       dispatch(ActionCreator.updateDisplayedPhones(updatePhones(phones, displayedPhones, amount)));
     }, [amount]
   )
+  
+  const findDifferentProperties = (properties: Array<Header>): Array<Header> => {
+    return properties.filter((property) => {
+      const phoneProperties = displayedPhones.map((phone) => phone[property]);
+      
+      if (new Set(phoneProperties).size >= 2) {
+        return true;
+      }
+      return false;
+    });
+  };
+
+  const comparedProperties = differencesOn ? findDifferentProperties(Object.keys(TableHeaders) as Array<Header>) : Object.keys(TableHeaders) as Array<Header>;
 
   return (
     <div className="comparison-table">
       <div className="comparison-table__header">
           <div className="comparison-table__header-cell">
-            <div className="comparison-table__differences-checkbox-container">
-              <label className="comparison-table__differences-checkbox-label">
-                Показать различия
-                <input className="comparison-table__differences-checkbox" type="checkbox"/>
-              </label>
+            <div className={`comparison-table__differences-checkbox${differencesOn ? ' checked' : ''}`} onClick={() => setDifferences(!differencesOn)}>
+              <p className="comparison-table__differences-checkbox-label">Показать различия</p>
             </div>
           </div>
 
@@ -59,7 +71,7 @@ const ComparisonTable = (): JSX.Element => {
 
       
       <div className="comparison-table__body">
-        {Object.keys(TableHeaders).map((header, i) => {
+        {comparedProperties.map((header, i) => {
           return <div key={`row-${i}`} className="comparison-table__row">
             <div className="comparison-table__header-cell">{TableHeaders[header as Header]}</div>
 

@@ -81,7 +81,7 @@
   }
 }
 
-.comparison-table__differences-checkbox-container {
+.comparison-table__differences-checkbox {
   position: relative;
   margin-left: 38px;
 
@@ -107,8 +107,5 @@
 .comparison-table__differences-checkbox-label {
   @include interactive-text;  
   text-transform: initial;
-}
-
-.comparison-table__differences-checkbox {
-  display: none;
+  user-select: none; 
 }
