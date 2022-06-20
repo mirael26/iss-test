@@ -1,8 +1,9 @@
 import { Action, State } from "../types";
 import { ActionType } from "./action";
+import { phonesMocks } from "../mocks";
 
 const initialState: State = {
-  phones: [],
+  phones: phonesMocks,
   displayedPhones: [],
   phonesAmount: 3,
 };

@@ -1,4 +1,4 @@
-const phones = [
+export const phonesMocks = [
   {
     id: 0,
     name: "Apple iPhone 12",

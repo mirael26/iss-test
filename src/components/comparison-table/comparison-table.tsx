@@ -1,8 +1,27 @@
 import * as React from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { ActionCreator } from "../../store/action";
+import { State } from "../../types";
+import { Header, TableHeaders } from "../../const";
 
 import Phone from "../phone/phone";
 
+
+
 const ComparisonTable = (): JSX.Element => {
+  const phones = useSelector((state: State) => state.phones);
+  const amount = useSelector((state: State) => state.phonesAmount);
+  const displayedPhones = useSelector((state: State) => state.displayedPhones);
+  const dispatch = useDispatch();
+
+  useEffect(
+    () => {      
+      dispatch(ActionCreator.updateDisplayedPhones(phones.slice(0, amount)));
+    }, []
+  )
+
   return (
     <div className="comparison-table">
       <div className="comparison-table__header">
@@ -14,31 +33,34 @@ const ComparisonTable = (): JSX.Element => {
               </label>
             </div>
           </div>
-          <div className="comparison-table__cell comparison-table__cell--columns-3">
-            <Phone isLast={false}/>
-          </div>
-          <div className="comparison-table__cell comparison-table__cell--columns-3">
-            <Phone isLast={false}/>
-          </div>
-          <div className="comparison-table__cell comparison-table__cell--columns-3">
-            <Phone isLast={true}/>
-          </div>
+
+          {displayedPhones.map((phone, i) => {
+            const isLast = (i === (displayedPhones.length - 1)) ? true : false;
+            return <div key={`phone-${i}`} className={`comparison-table__cell comparison-table__cell--columns-${amount}`}>
+              <Phone isLast={isLast} image={phone.image} name={phone.name} />
+            </div>
+          })}
       </div>
+
       
       <div className="comparison-table__body">
-        <div className="comparison-table__row">
-          <div className="comparison-table__header-cell">Производитель</div>
-          <div className="comparison-table__cell comparison-table__cell--columns-3">Apple</div>
-          <div className="comparison-table__cell comparison-table__cell--columns-3">Xiaomi</div>
-          <div className="comparison-table__cell comparison-table__cell--columns-3">Samsung</div>
-        </div>
+        {Object.keys(TableHeaders).map((header, i) => {
+          return <div key={`row-${i}`} className="comparison-table__row">
+            <div className="comparison-table__header-cell">{TableHeaders[header as Header]}</div>
 
-        <div className="comparison-table__row">
-          <div className="comparison-table__header-cell">Частота обновления экрана</div>
-          <div className="comparison-table__cell comparison-table__cell--columns-3">Apple</div>
-          <div className="comparison-table__cell comparison-table__cell--columns-3">Xiaomi</div>
-          <div className="comparison-table__cell comparison-table__cell--columns-3">Samsung</div>
-        </div>
+            {displayedPhones.map((phone, i) => {
+              const content = typeof phone[header as Header] !== "boolean"
+                ? `${phone[header as Header]}${header === "cost" ? " ₽" : ""}`
+                : <div className={`comparison-table__boolean-icon comparison-table__boolean-icon--${phone[header as Header]}`}>
+                  {phone[header as Header] === true ? "Да" : "Нет"}
+                </div>;
+
+              return <div key={`${header}-cell-${i}`} className={`comparison-table__cell comparison-table__cell--columns-${amount}`}>
+                {content}
+              </div>
+            })}
+          </div>
+        })}
       </div>
     </div>
   );

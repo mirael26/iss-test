@@ -65,6 +65,22 @@
   }
 }
 
+.comparison-table__boolean-icon {
+  width: 22px;
+  height: 22px;
+  margin: 0 auto;
+  font-size: 0px;
+  background-repeat: no-repeat;
+  
+  &--true {
+    background-image: url('../../img/check-mark.svg');
+  }
+
+  &--false {
+    background-image: url('../../img/cross-mark.svg');
+  }
+}
+
 .comparison-table__differences-checkbox-container {
   position: relative;
   margin-left: 38px;
