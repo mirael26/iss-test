@@ -1,4 +1,4 @@
-.search {
+.replace {
   overflow-y: scroll;
   width: 421px;
   max-height: 336px;
@@ -23,7 +23,7 @@
   }
 }
 
-.search__input {
+.replace__search-input {
   width: 359px;
   height: 47px;
   margin-bottom: 18px;
@@ -36,7 +36,7 @@
   }
 }
 
-.search__phone-item {
+.replace__phone-item {
   display: flex;
   align-items: center;
   margin-bottom: 32px;
@@ -46,7 +46,7 @@
   }
 }
 
-.search__phone-change-button {
+.replace__phone-change-button {
   width: 20px;
   height: 20px;
   margin-right: 14px;
@@ -54,17 +54,17 @@
   background: url('./../../img/change-arrows.svg') no-repeat center;
 }
 
-.search__phone-image-container {
+.replace__phone-image-container {
   width: 38px;
   height: 50px;
   margin-right: 19px;
 }
 
-.search__phone-image {
+.replace__phone-image {
   height: 50px;
   margin: 0 auto;
 }
 
-.search__phone-text {
+.replace__phone-text {
   @include text;
 }

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 
-import Search from "../search/search";
+import Replace from "../replace/replace";
 
 interface PhoneProps {
   isLast?: boolean,
@@ -11,26 +11,26 @@ interface PhoneProps {
 }
 
 const Phone = ({isLast = false, image, name, id}: PhoneProps): JSX.Element => {
-  const [isSearchOpen, setSearchOpen] = useState(false);
+  const [isReplaceOpen, setReplaceOpen] = useState(false);
 
   useEffect (
     () => {
-      if (isSearchOpen) {
-        window.addEventListener('click', closeSearchPopup, true);
+      if (isReplaceOpen) {
+        window.addEventListener('click', closeReplacePopup, true);
       }      
       return () => {
-        window.removeEventListener('click', closeSearchPopup, true);
+        window.removeEventListener('click', closeReplacePopup, true);
       };
-    }, [isSearchOpen]
+    }, [isReplaceOpen]
   )
 
-  const closeSearchPopup = (evt: Event) => {
+  const closeReplacePopup = (evt: Event) => {
     const element = evt.target as Element;
-    const searchBlock = document.querySelector('.phone__search');
-    if (searchBlock == element || searchBlock.contains(element)) {
+    const replaceBlock = document.querySelector('.phone__replace');
+    if (replaceBlock == element || replaceBlock.contains(element)) {
       return;
     }
-    setSearchOpen(false);
+    setReplaceOpen(false);
   };
 
   return (
@@ -38,9 +38,9 @@ const Phone = ({isLast = false, image, name, id}: PhoneProps): JSX.Element => {
       <img className="phone__image" src={require(`../../img/${image}`)} alt={name}/>
 
       <p className="phone__text">{name}</p>
-      {isSearchOpen
-        ? <Search className={`phone__search${isLast ? " phone__search--last": ""}`} id={id}></Search>
-        : <button className="phone__change" onClick={() => setSearchOpen(true)}>Заменить телефон</button>}
+      {isReplaceOpen
+        ? <Replace className={`phone__replace${isLast ? " phone__replace--last": ""}`} id={id}></Replace>
+        : <button className="phone__replace-button" onClick={() => setReplaceOpen(true)}>Заменить телефон</button>}
     </div>
   );
 };
