@@ -12,7 +12,7 @@ const AmountFilter = (): JSX.Element => {
   const buttons: Array<number> = [];
 
   if (phones.length > 1) {
-    for (let i = 2; i <= phones.length; i++) {
+    for (let i = 2; i <= phones.length && i <= 6; i++) {
       buttons.push(i);
     }
   }
