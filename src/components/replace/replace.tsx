@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ActionCreator } from "../../store/action";
@@ -14,6 +15,8 @@ const Replace = ({className = "", id}: ReplaceProps): JSX.Element => {
   const displayedPhones = useSelector((state: State) => state.displayedPhones) as Array<PhoneProperties>;
   const dispatch = useDispatch();
 
+  const [searchedPhones, setSearchedPhones] = useState(null);
+
 
   const undisplayedPhones = phones.filter(phone => {
     return !displayedPhones.find(displayedPhone => phone.id === displayedPhone.id);
@@ -26,14 +29,32 @@ const Replace = ({className = "", id}: ReplaceProps): JSX.Element => {
     updatedPhones[index] = phones.find(phone => phone.id === Number(element.id));
 
     dispatch(ActionCreator.updateDisplayedPhones(updatedPhones));
-  }
+  };
+
+  const searchPhones = (evt: React.ChangeEvent<HTMLInputElement>): void => {
+    const searchingText = evt.target.value;
+    if (searchingText === "") {
+      searchedPhones ? setSearchedPhones(null) : null;
+      return;
+    }
+
+    const result = undisplayedPhones.filter((phone) => {
+      const searchRegexp = new RegExp(`^${searchingText}| ${searchingText}`, 'i');
+      return searchRegexp.test(phone.name);
+    });
+    setSearchedPhones(result);
+  };
+
+  const resultPhones = searchedPhones ? searchedPhones as Array<PhoneProperties> : undisplayedPhones;
 
   return (
     <div className={`replace ${className}`}>
-      <input className="replace__search-input" type="text" placeholder="Поиск"/>
+      {undisplayedPhones.length > 3
+        ? <input className="replace__search-input" type="text" placeholder="Поиск" onChange={(evt) => searchPhones(evt)}/>
+        : null}
+        
       <ul className="replace__phone-list">
-
-        {undisplayedPhones.map((phone, i) => {
+        {resultPhones.map((phone, i) => {
           return <li key={`replace-phone-${i}`} className="replace__phone-item">
             <button className="replace__phone-change-button" id={phone.id.toString()} onClick={(evt) => replacePhones(evt)}>Заменить</button>
             <div className="replace__phone-image-container">
