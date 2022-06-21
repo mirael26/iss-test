@@ -56,15 +56,15 @@ const ComparisonTable = (): JSX.Element => {
     <div className="comparison-table">
       <div className="comparison-table__header">
           <div className="comparison-table__header-cell">
-            <div className={`comparison-table__differences-checkbox${differencesOn ? ' checked' : ''}`} onClick={() => setDifferences(!differencesOn)}>
+            <button className={`comparison-table__differences-checkbox${differencesOn ? ' checked' : ''}`} onClick={() => setDifferences(!differencesOn)}>
               <p className="comparison-table__differences-checkbox-label">Показать различия</p>
-            </div>
+            </button>
           </div>
 
           {displayedPhones.map((phone, i) => {
             const isLast = (i === (displayedPhones.length - 1)) ? true : false;
             return <div key={`phone-${i}`} className={`comparison-table__cell comparison-table__cell--columns-${amount}`}>
-              <Phone isLast={isLast} image={phone.image} name={phone.name} />
+              <Phone isLast={isLast} image={phone.image} name={phone.name} id={phone.id}/>
             </div>
           })}
       </div>
