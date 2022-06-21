@@ -51,6 +51,7 @@ const ComparisonTable = (): JSX.Element => {
   };
 
   const comparedProperties = differencesOn ? findDifferentProperties(Object.keys(TableHeaders) as Array<Header>) : Object.keys(TableHeaders) as Array<Header>;
+  const isUndisplayedPhones = !(phones.length === amount);
 
   return (
     <div className="comparison-table">
@@ -64,7 +65,7 @@ const ComparisonTable = (): JSX.Element => {
           {displayedPhones.map((phone, i) => {
             const isLast = (i === (displayedPhones.length - 1)) ? true : false;
             return <div key={`phone-${i}`} className={`comparison-table__cell comparison-table__cell--columns-${amount}`}>
-              <Phone isLast={isLast} image={phone.image} name={phone.name} id={phone.id}/>
+              <Phone isLast={isLast} image={phone.image} name={phone.name} id={phone.id} isUndisplayedPhones={isUndisplayedPhones}/>
             </div>
           })}
       </div>

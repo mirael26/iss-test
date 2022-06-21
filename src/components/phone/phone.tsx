@@ -8,9 +8,10 @@ interface PhoneProps {
   image: string,
   name: string,
   id: number,
+  isUndisplayedPhones: boolean,
 }
 
-const Phone = ({isLast = false, image, name, id}: PhoneProps): JSX.Element => {
+const Phone = ({isLast = false, image, name, id, isUndisplayedPhones}: PhoneProps): JSX.Element => {
   const [isReplaceOpen, setReplaceOpen] = useState(false);
 
   useEffect (
@@ -38,9 +39,14 @@ const Phone = ({isLast = false, image, name, id}: PhoneProps): JSX.Element => {
       <img className="phone__image" src={require(`../../img/${image}`)} alt={name}/>
 
       <p className="phone__text">{name}</p>
-      {isReplaceOpen
-        ? <Replace className={`phone__replace${isLast ? " phone__replace--last": ""}`} id={id}></Replace>
-        : <button className="phone__replace-button" onClick={() => setReplaceOpen(true)}>Заменить телефон</button>}
+
+      {isUndisplayedPhones
+        ?
+        isReplaceOpen
+          ? <Replace className={`phone__replace${isLast ? " phone__replace--last": ""}`} id={id}></Replace>
+          : <button className="phone__replace-button" onClick={() => setReplaceOpen(true)}>Заменить телефон</button>
+        : null
+      }
     </div>
   );
 };
