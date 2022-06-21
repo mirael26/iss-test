@@ -4603,21 +4603,6 @@ var phonesMocks = [
         wirelessCharger: true,
         cost: "26 990",
     },
-    {
-        id: 6,
-        name: "Realme 8 Pro",
-        image: "realme-8-pro.png",
-        brand: "Realme",
-        release: "2018",
-        screenDiagonal: "6,8",
-        country: "Китай",
-        memorySize: "128 Гб",
-        screenRefreshRate: "90 Гц",
-        nfc: true,
-        esimSupport: true,
-        wirelessCharger: true,
-        cost: "26 990",
-    },
 ];
 
 ;// CONCATENATED MODULE: ./src/store/reducer.ts
