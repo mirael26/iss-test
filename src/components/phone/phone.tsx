@@ -43,7 +43,7 @@ const Phone = ({isLast = false, image, name, id, isUndisplayedPhones}: PhoneProp
       {isUndisplayedPhones
         ?
         isReplaceOpen
-          ? <Replace className={`phone__replace${isLast ? " phone__replace--last": ""}`} id={id}></Replace>
+          ? <Replace className={`phone__replace${isLast ? " phone__replace--last": ""}`} currentId={id}></Replace>
           : <button className="phone__replace-button" onClick={() => setReplaceOpen(true)}>Заменить телефон</button>
         : null
       }

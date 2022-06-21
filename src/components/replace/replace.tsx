@@ -7,10 +7,10 @@ import { PhoneProperties, State } from "../../types";
 
 interface ReplaceProps {
   className: string,
-  id: number,
+  currentId: number,
 }
 
-const Replace = ({className = "", id}: ReplaceProps): JSX.Element => {
+const Replace = ({className = "", currentId}: ReplaceProps): JSX.Element => {
   const phones = useSelector((state: State) => state.phones) as Array<PhoneProperties>;
   const displayedPhones = useSelector((state: State) => state.displayedPhones) as Array<PhoneProperties>;
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Replace = ({className = "", id}: ReplaceProps): JSX.Element => {
 
   const replacePhones = (evt: React.SyntheticEvent): void => {
     const element = evt.target as Element;
-    const index = displayedPhones.findIndex(element => element.id === id);
+    const index = displayedPhones.findIndex(element => element.id === currentId);
     const updatedPhones = displayedPhones.slice();
     updatedPhones[index] = phones.find(phone => phone.id === Number(element.id));
 
